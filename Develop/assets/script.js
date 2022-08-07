@@ -1,10 +1,9 @@
 // T O D A Y ' S  D A T E
 $(document).ready(function () {
-  //current time
   $("#currentDay").text(moment().format("dddd, MMM Do YYYY "));
 
-  // save button listener for user input
   $(".save-note").on("click", function () {
+    console.log(this);
     var text = $(this).siblings(".description").val();
     var time = $(this).parent().attr("id");
 
@@ -16,18 +15,18 @@ $(document).ready(function () {
 // T I M E  T R A C K E R
 
 function timeTracker() {
-  // C U R R E N T  T I M E
+  //  G E T  C U R R E N T  T I M E
   var currentTime = moment().hour();
 
   // S C H E D U L E  B L O C K  L O O P
   $(".time-block").each(function () {
-    var hourBlock = parseInt($(this).attr("id").split("hour")[1]);
+    var hour = parseInt($(this).attr("id").split("hour")[1]);
 
-    if (hourBlock < currentTime) {
+    if (hour < currentTime) {
       $(this).removeClass("future");
       $(this).removeClass("present");
       $(this).addClass("past");
-    } else if (hourBlock === currentTime) {
+    } else if (hour === currentTime) {
       $(this).removeClass("future");
       $(this).removeClass("past");
       $(this).addClass("present");
